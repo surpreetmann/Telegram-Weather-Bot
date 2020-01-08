@@ -1,11 +1,11 @@
 # Telegram-Weather-Bot
 A telegram bot developed using:
 
--NodeJs
+- NodeJs
 
--Firebase Cloud Functions
+- Firebase Cloud Functions
 
--Telegraf Framework
+- Telegraf Framework
 
 # Details
 - I have created this using firebase cloud functions using telegram API token. 
