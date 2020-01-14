@@ -1,9 +1,25 @@
+
 const functions = require('firebase-functions');
 const Telegraf = require('telegraf')
-const apixu = require('apixu');
+const axios = require('axios');
+const params = {
+  access_key: '--',
+  query: 'London'
+}
+/*const apixu = require('apixu');
 const apixuClient = new apixu.Apixu({
     apikey: '--'
-})
+})*/
+exports.helloWorld = functions.https.onRequest((request, response) => {
+    axios.get('http://api.weatherstack.com/current', {params})
+      .then((current) => {
+        const apiResponse = current.data;
+        console.log(current.data);
+        return response.send(apiResponse);
+      }).catch((error) => {
+        console.log(error);
+      });
+    }); 
 
 const bot = new Telegraf('--')
 bot.start((ctx) => ctx.reply('Welcome'))
@@ -15,10 +31,12 @@ bot.launch()
 // // Create and Deploy Your First Cloud Functions
 // // https://firebase.google.com/docs/functions/write-firebase-functions
 //
-exports.helloWorld = functions.https.onRequest((request, response) => {
+/*exports.helloWorld = functions.https.onRequest((request, response) => {
  apixuClient.current('London').then((current)=>{
     return response.send(current);
  }).catch((err)=>{
      return response.send(err);
  })
-});
+});*/
+
+ 
