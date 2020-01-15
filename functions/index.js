@@ -19,6 +19,7 @@ bot.on('text', (ctx) =>{
         return ctx.reply('City does not exist. Try another name!');
       });
 })
+bot.help((ctx) => ctx.reply('Send me a sticker'))
 bot.hears('hi', (ctx) => ctx.reply('Hey there'))
 bot.launch();
 
