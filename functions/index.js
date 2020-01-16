@@ -3,7 +3,7 @@ const functions = require('firebase-functions');
 const Telegraf = require('telegraf')
 const axios = require('axios');
 const params = {
-  access_key: '---',
+  access_key: '--',
   query: 'London'
 }
 
