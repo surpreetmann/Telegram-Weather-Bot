@@ -3,25 +3,9 @@ const functions = require('firebase-functions');
 const Telegraf = require('telegraf')
 const axios = require('axios');
 const params = {
-  access_key: '--',
+  access_key: '---',
   query: 'London'
 }
-
-
-const bot = new Telegraf('--')
-bot.start((ctx) => ctx.reply('Welcome'))
-bot.on('text', (ctx) =>{
-    params.query = ctx.update.message.text;
-    axios.get('http://api.weatherstack.com/current', {params})
-      .then((current) => {
-        return ctx.reply('Current weather in ${query} is C: ${current.current.temperature}')
-      }).catch((error) => {
-        return ctx.reply('City does not exist. Try another name!');
-      });
-})
-bot.hears('hi', (ctx) => ctx.reply('Hey there'))
-bot.launch();
-
 
 exports.helloWorld = functions.https.onRequest((request, response) => {
     axios.get('http://api.weatherstack.com/current', {params})
@@ -34,6 +18,19 @@ exports.helloWorld = functions.https.onRequest((request, response) => {
       });
     }); 
 
+    const bot = new Telegraf('--')
+bot.start((ctx) => ctx.reply('Welcome'))
+bot.on('text', (ctx) =>{
+   params.query = ctx.update.message.text;
+    axios.get('http://api.weatherstack.com/current', {params})
+      .then((current) => {
+        return ctx.reply('Current weather in ${params.query} is C: ${current.current.temperature}')
+      }).catch((error) => {
+        return ctx.reply('City does not exist. Try another name!');
+      });
+})
+bot.hears('hi', (ctx) => ctx.reply('Hey there'))
+bot.launch();
 
 /*const apixu = require('apixu');
 const apixuClient = new apixu.Apixu({
