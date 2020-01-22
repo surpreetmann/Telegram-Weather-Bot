@@ -1,4 +1,5 @@
 # Telegram-Weather-Bot
+This bot is live at t.me/spoton_weather_bot . You just need to enter the name of the city and the bot will reply back with the current weather of that city.
 A telegram bot developed using:
 
 - NodeJs
